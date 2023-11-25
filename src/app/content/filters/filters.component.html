@@ -1,0 +1,67 @@
+<div>filter</div>
+<div class="filtersBackground">
+  <form [formGroup]="selectionsForm" style="margin-left: 10px">
+    <mat-form-field
+      style="margin-top: 10px"
+      appearance="fill"
+      aria-label="This dropdown selector contains a list of parameter names. Select one parameter for the graph's x-axis."
+    >
+      <mat-label>Category</mat-label>
+      <mat-select
+        formControlName="experience"
+        (ngModelChange)="populateSkills()"
+      >
+        <mat-option
+          *ngFor="let experience of this.experienceTypes"
+          [value]="experience.code"
+          >{{ experience.type }}</mat-option
+        >
+      </mat-select> </mat-form-field
+    ><br />
+    <mat-form-field
+      matTooltip="Derived from selected Category"
+      appearance="fill"
+      aria-label="This dropdown selector contains a list of parameter names. Select one parameter for the graph's x-axis."
+    >
+      <mat-label>Related Skills</mat-label>
+      <mat-select
+        formControlName="skills"
+        (ngModelChange)="generateNewCode()"
+        multiple
+      >
+        <mat-option *ngFor="let skill of this.skills" [value]="skill.code">{{
+          skill.type
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+  <div class="flex-container">
+    <div
+      id="searchBtn"
+      class="filterBtns btnColorGray"
+      (click)="submitFilters()"
+      matTooltip="Search"
+    >
+      <mat-icon class="filterIcons" style="color: gray"> search </mat-icon>
+    </div>
+    <div
+      id="clearBtn"
+      class="filterBtns btnColorGray"
+      (click)="clearFilters()"
+      matTooltip="Clear all"
+    >
+      <mat-icon class="filterIcons" style="color: gray">
+        layers_clear
+      </mat-icon>
+    </div>
+    <div
+      id="extentBtn"
+      class="filterBtns btnColorPink"
+      (click)="zoomToFull()"
+      matTooltip="Original extent"
+    >
+      <mat-icon class="filterIcons" style="color: gray"> zoom_out_map</mat-icon>
+    </div>
+  </div>
+</div>

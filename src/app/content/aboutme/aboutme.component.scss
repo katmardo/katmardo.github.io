@@ -1,0 +1,25 @@
+.explainerRectangle {
+  height: calc(90vh - 140px);
+  overflow-y: scroll;
+  width: 90vw;
+  max-width: 1150px;
+  max-height: 500px;
+  margin-top: 140px;
+  margin-left: 20px;
+  background-color: #ffccd2;
+  display: inline-block;
+  position: absolute;
+  font-family: Verdana, sans-serif;
+  box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.6);
+  border-radius: 15px;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}

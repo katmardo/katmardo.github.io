@@ -1,0 +1,37 @@
+.filterPanel {
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+}
+.filtersBackground {
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 220px !important;
+  height: 220px;
+  position: relative;
+  margin-left: 20px;
+  margin-top: 130px;
+  border-radius: 5%;
+}
+.filterBtns {
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+  border-radius: 50%;
+  color: rgb(80, 78, 78);
+}
+.filterIcons {
+  font-size: 35px;
+  margin-left: -8px;
+  margin-top: 8px;
+}
+
+.btnColorPink {
+  background-color: #ffafaf;
+}
+
+.btnColorGray {
+  background-color: rgb(204, 204, 204);
+}
