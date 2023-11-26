@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+
+.clusterMarkerIcon {
+  height: 32px;
+  width: 32px;
+  margin-top: 6px;
+  border-radius: 50%;
+  opacity: 1;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  background-color: #ffafaf;
+  border: 2px solid gray;
+}
+.popupFont {
+  font-size: 14px;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.flex-container {
+  display: flex;
+}
+.flex-child {
+  flex: 1;
+}
