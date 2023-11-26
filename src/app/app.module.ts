@@ -12,9 +12,10 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTooltipModule } from "@angular/material/tooltip";
 
+import { MatCheckboxModule } from "@angular/material/checkbox";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { WelcomeComponent } from './content/welcome/welcome.component';
-import { AboutmeComponent } from './content/aboutme/aboutme.component';
+import { WelcomeComponent } from "./content/welcome/welcome.component";
+import { AboutmeComponent } from "./content/aboutme/aboutme.component";
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AboutmeComponent } from './content/aboutme/aboutme.component';
     FormsModule,
     ReactiveFormsModule,
     MatTooltipModule,
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

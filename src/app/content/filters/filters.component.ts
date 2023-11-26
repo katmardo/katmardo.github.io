@@ -46,15 +46,35 @@ export class FiltersComponent implements OnInit {
     { type: "TerrSet", code: "7" }, */
   ];
   public skills = [];
+  public showAllPnts = true;
 
   //Graph options
   selectionsForm = new FormGroup({
+    allPts: new FormControl(),
     experience: new FormControl(),
     skills: new FormControl(),
   });
 
   ngOnInit(): void {
+    this.selectionsForm.get("allPts").setValue(true);
     this.mapService.loadNullLayers();
+    this.mapService.createMapPoints("111", "0");
+  }
+
+  public allPtsChecked(checkbox) {
+    const checked = checkbox.checked;
+    if (checked) {
+      this.showAllPnts = true;
+
+      document.getElementById("searchBtn").classList.remove("btnColorGray");
+      document.getElementById("searchBtn").classList.add("btnColorPink");
+
+      document.getElementById("clearBtn").classList.remove("btnColorGray");
+      document.getElementById("clearBtn").classList.add("btnColorPink");
+    }
+    if (!checked) {
+      this.showAllPnts = false;
+    }
   }
 
   public populateSkills() {
@@ -78,8 +98,6 @@ export class FiltersComponent implements OnInit {
   public generateNewCode() {
     let skillVal = this.selectionsForm.get("skills").value;
 
-    let progString = "0000";
-
     if (skillVal) {
       if (skillVal.length > 0) {
         document.getElementById("searchBtn").classList.remove("btnColorGray");
@@ -99,16 +117,27 @@ export class FiltersComponent implements OnInit {
   }
 
   public submitFilters() {
-    let experienceVal = this.selectionsForm.get("experience").value;
-    let skillVal = this.selectionsForm.get("skills").value;
+    let experienceVal;
+    let skillVal;
+    if (!this.showAllPnts) {
+      experienceVal = this.selectionsForm.get("experience").value;
+      skillVal = this.selectionsForm.get("skills").value;
+    }
+    if (this.showAllPnts) {
+      experienceVal = "111";
+      skillVal = "0";
+    }
 
     this.mapService.createMapPoints(experienceVal, skillVal);
   }
 
   public clearFilters() {
+    this.selectionsForm.get("allPts").setValue(false);
     this.selectionsForm.get("experience").setValue("");
     this.selectionsForm.get("skills").setValue("");
     this.mapService.loadNullLayers();
+
+    this.showAllPnts = false;
 
     this.mapService.resetSubject.next(true);
     document.getElementById("clearBtn").classList.remove("btnColorPink");

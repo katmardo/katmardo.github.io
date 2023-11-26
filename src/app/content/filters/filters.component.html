@@ -1,45 +1,54 @@
 <div>filter</div>
-<div class="filtersBackground">
+<div class="filtersBackground" id="filterBackground">
   <form [formGroup]="selectionsForm" style="margin-left: 10px">
-    <mat-form-field
+    <mat-checkbox
+      formControlName="allPts"
+      [checked]="true"
       style="margin-top: 10px"
-      appearance="fill"
-      aria-label="This dropdown selector contains a list of parameter names. Select one parameter for the graph's x-axis."
+      (change)="allPtsChecked($event)"
+      >Show all points</mat-checkbox
     >
-      <mat-label>Category</mat-label>
-      <mat-select
-        formControlName="experience"
-        (ngModelChange)="populateSkills()"
+    <div *ngIf="!showAllPnts">
+      <mat-form-field
+        style="margin-top: 10px"
+        appearance="fill"
+        aria-label="This dropdown selector contains a list of parameter names. Select one parameter for the graph's x-axis."
       >
-        <mat-option
-          *ngFor="let experience of this.experienceTypes"
-          [value]="experience.code"
-          >{{ experience.type }}</mat-option
+        <mat-label>Category</mat-label>
+        <mat-select
+          formControlName="experience"
+          (ngModelChange)="populateSkills()"
         >
-      </mat-select> </mat-form-field
-    ><br />
-    <mat-form-field
-      matTooltip="Derived from selected Category"
-      appearance="fill"
-      aria-label="This dropdown selector contains a list of parameter names. Select one parameter for the graph's x-axis."
-    >
-      <mat-label>Related Skills</mat-label>
-      <mat-select
-        formControlName="skills"
-        (ngModelChange)="generateNewCode()"
-        multiple
+          <mat-option
+            *ngFor="let experience of this.experienceTypes"
+            [value]="experience.code"
+            >{{ experience.type }}</mat-option
+          >
+        </mat-select> </mat-form-field
+      ><br />
+      <mat-form-field
+        appearance="fill"
+        aria-label="This dropdown selector contains a list of parameter names. Select one parameter for the graph's x-axis."
       >
-        <mat-option *ngFor="let skill of this.skills" [value]="skill.code">{{
-          skill.type
-        }}</mat-option>
-      </mat-select>
-    </mat-form-field>
+        <mat-label>Related Skills</mat-label>
+        <mat-select
+          formControlName="skills"
+          (ngModelChange)="generateNewCode()"
+          multiple
+        >
+          <mat-option *ngFor="let skill of this.skills" [value]="skill.code">{{
+            skill.type
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </form>
 
   <div class="flex-container">
     <div
+      style="margin-bottom: 10px"
       id="searchBtn"
-      class="filterBtns btnColorGray"
+      class="filterBtns btnColorPink"
       (click)="submitFilters()"
       matTooltip="Search"
     >
@@ -47,7 +56,7 @@
     </div>
     <div
       id="clearBtn"
-      class="filterBtns btnColorGray"
+      class="filterBtns btnColorPink"
       (click)="clearFilters()"
       matTooltip="Clear all"
     >

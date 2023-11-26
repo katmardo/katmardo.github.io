@@ -46,6 +46,7 @@ export class BackgroundComponent implements AfterViewInit {
     let gisPts;
     let teachingPts;
     let programmingPts;
+    let allPoints;
 
     this.mapService.resetSubject.subscribe((reset) => {
       if (reset === true) {
@@ -72,6 +73,9 @@ export class BackgroundComponent implements AfterViewInit {
         if (this.map.hasLayer(gisPts)) {
           gisPts.removeFrom(this.map);
         }
+        if (this.map.hasLayer(allPoints)) {
+          allPoints.removeFrom(this.map);
+        }
         gisPts = points;
         gisPts.addTo(this.map);
         this.zoomToLayer(gisPts);
@@ -87,6 +91,9 @@ export class BackgroundComponent implements AfterViewInit {
         }
         if (this.map.hasLayer(teachingPts)) {
           teachingPts.removeFrom(this.map);
+        }
+        if (this.map.hasLayer(allPoints)) {
+          allPoints.removeFrom(this.map);
         }
         teachingPts = points;
         teachingPts.addTo(this.map);
@@ -104,9 +111,31 @@ export class BackgroundComponent implements AfterViewInit {
         if (this.map.hasLayer(programmingPts)) {
           programmingPts.removeFrom(this.map);
         }
+        if (this.map.hasLayer(allPoints)) {
+          allPoints.removeFrom(this.map);
+        }
         programmingPts = points;
         programmingPts.addTo(this.map);
         this.zoomToLayer(programmingPts);
+      }
+    });
+    this.mapService.defaultMarkerSubject.subscribe((points) => {
+      if (points) {
+        if (this.map.hasLayer(gisPts)) {
+          gisPts.removeFrom(this.map);
+        }
+        if (this.map.hasLayer(teachingPts)) {
+          teachingPts.removeFrom(this.map);
+        }
+        if (this.map.hasLayer(programmingPts)) {
+          programmingPts.removeFrom(this.map);
+        }
+        if (this.map.hasLayer(allPoints)) {
+          allPoints.removeFrom(this.map);
+        }
+        allPoints = points;
+        allPoints.addTo(this.map);
+        this.zoomToLayer(allPoints);
       }
     });
   }
