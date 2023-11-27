@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, AfterViewInit } from "@angular/core";
 import * as L from "leaflet";
 import "leaflet.markercluster";
 import { FormControl, FormGroup } from "@angular/forms";
@@ -9,7 +9,7 @@ import { MapService } from "src/app/services/map.service";
   templateUrl: "./filters.component.html",
   styleUrls: ["./filters.component.scss"],
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent implements AfterViewInit {
   constructor(private mapService: MapService) {}
 
   public zoomToFull() {
@@ -17,9 +17,9 @@ export class FiltersComponent implements OnInit {
   }
 
   public experienceTypes = [
-    { type: "Teaching", code: "100" },
     { type: "GIS", code: "010" },
     { type: "Programming", code: "001" },
+    { type: "Teaching", code: "100" },
   ];
   public programmingSkills = [
     { type: "Python", code: "0" },
@@ -55,7 +55,7 @@ export class FiltersComponent implements OnInit {
     skills: new FormControl(),
   });
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.selectionsForm.get("allPts").setValue(true);
     this.mapService.loadNullLayers();
     this.mapService.createMapPoints("111", "0");
